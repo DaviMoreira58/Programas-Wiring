@@ -1,0 +1,66 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x3F, 16, 2); // Define o endereço I2C do display e suas dimensões
+
+int digitalPin1 = 2;
+int digitalPin2 = 3;
+int digitalPin3 = 4;
+int digitalPin4 = 5;
+
+int analogPin1 = A0;
+int analogPin2 = A1;
+
+void setup() {
+  pinMode(digitalPin1, INPUT);
+  pinMode(digitalPin2, INPUT);
+  pinMode(digitalPin3, INPUT);
+  pinMode(digitalPin4, INPUT);
+  Wire.begin();
+  lcd.init();
+  lcd.backlight();
+  lcd.clear();
+  Serial.begin(9600);
+}
+
+void loop() {
+  int digitalValue1 = digitalRead(digitalPin1);
+  int digitalValue2 = digitalRead(digitalPin2);
+  int digitalValue3 = digitalRead(digitalPin3);
+  int digitalValue4 = digitalRead(digitalPin4);
+
+  int analogValue1 = analogRead(analogPin1);
+  float angle = map(analogValue1, 0, 1023, 0, 180); // Converter o valor do sensor de angulo de 0-1023 para 0-180 graus
+  float mm = angle / 180 * 3.14 * 50; // Converter o angulo em milimetros considerando um raio de 50mm
+  //float m = angle / 180 * 3.14 * 1.57; // Converter o angulo em metros considerando um raio de 50mm
+
+  Serial.print("Digital values: ");
+  Serial.print(digitalValue1);
+  Serial.print(", ");
+  Serial.print(digitalValue2);
+  Serial.print(", ");
+  Serial.print(digitalValue3);
+  Serial.print(", ");
+  Serial.println(digitalValue4);
+
+  Serial.print("Analog value 1 (angle): ");
+  Serial.println(angle);
+  
+  Serial.print("Analog value 1 (mm): ");
+  Serial.println(mm);
+  
+//  Serial.print("Analog value 1 (m): ");
+//  Serial.println(m);
+
+  lcd.setCursor(0, 0); // Posicionar o cursor no inicio da primeira linha
+  lcd.print("Angle: ");
+  lcd.print(angle);
+  lcd.print(" deg");
+
+  lcd.setCursor(0, 1); // Posicionar o cursor no inicio da segunda linha
+  lcd.print("Distance: ");
+  lcd.print(mm);
+  lcd.print(" mm");
+
+  delay(1000);
+}

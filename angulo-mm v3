@@ -1,0 +1,55 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+#define ANGULO_PIN A0
+#define BUTTON_PIN 2
+#define BUTTON_PIN_DOWN 3
+
+LiquidCrystal_I2C lcd(0x27, 16, 2); // Endereço do display I2C e número de colunas e linhas
+
+float distanciaTotal = 0; // Variável global para armazenar a distância total percorrida
+
+void setup() {
+Serial.begin(9600);
+lcd.init(); // Inicializa o display
+lcd.backlight(); // Acende o backlight
+pinMode(BUTTON_PIN, INPUT_PULLUP); // Configura o botão para a direita como entrada com resistor de pull-up interno
+pinMode(BUTTON_PIN_DOWN, INPUT_PULLUP); // Configura o botão para baixo como entrada com resistor de pull-up interno
+}
+
+void loop() {
+int dadosSensor = analogRead(ANGULO_PIN);
+float angulo = (dadosSensor * 0.088) - 2.94; // Calcula o ângulo em graus a partir dos dados lidos pelo sensor
+
+float distanciaPercorrida = angulo * 0.01745; // Calcula a distância percorrida em metros
+distanciaTotal += distanciaPercorrida; // Incrementa a distância total
+
+lcd.clear();
+lcd.setCursor(0,0);
+lcd.print("Distancia:");
+lcd.setCursor(0,1);
+lcd.print(distanciaTotal, 2);
+lcd.print(" m");
+
+if(digitalRead(BUTTON_PIN) == LOW){ // Verifica se o botão para a direita foi pressionado
+lcd.clear();
+lcd.setCursor(0,0);
+lcd.print("Total:");
+lcd.setCursor(0,1);
+lcd.print(distanciaTotal, 2);
+lcd.print(" m");
+delay(2000); // Aguarda 2 segundos antes de voltar a exibir a distância percorrida atual
+}
+
+if(digitalRead(BUTTON_PIN_DOWN) == LOW){ // Verifica se o botão para baixo foi pressionado
+lcd.clear();
+lcd.setCursor(0,0);
+lcd.print("Velocidade:");
+lcd.setCursor(0,1);
+lcd.print(distanciaPercorrida, 2);
+lcd.print(" m/s");
+delay(2000); // Aguarda 2 segundos antes de voltar a exibir a distância percorrida atual
+}
+
+delay(1000);
+}

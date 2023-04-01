@@ -1,0 +1,218 @@
+Os programas em Arduino podem ser divididos em três partes principais:
+- Estrutura;
+- Valores (variáveis e constantes);
+- Funções.
+
+
+ESTRUTURA
+- void setup ()
+- void loop ()
+
+
+Estruturas de controle
+- if
+- if … else
+- for
+- switch case
+- while
+- do... while
+- break
+- continue
+- return
+- goto
+
+
+Elementos de sintaxe
+- ; (ponto e vírgula)
+- {} (chaves)
+- // (linha de comentário) ou /*
+-/ (bloco de comentário)
+- #define
+- #include
+
+
+Operadores aritméticos
+- = (atribuição)
+- + (adição)
+- - (subtração)
+- * (multiplicação)
+- / (divisão)
+- % (resto da divisão)
+
+
+
+Operadores de comparação
+- == (igual a)
+- != (diferente de)
+- < (menor que)
+- > (maior que)
+- <= (menor ou igual a)
+- >= (maior ou igual a)
+
+
+
+Operadores booleanos
+- && (e)
+- || (ou)
+- ! (não)
+
+
+
+Operadores de Ponteiros
+- * Operador de referência
+- & Referência do operador
+
+
+
+Operadores de bits
+- & (operador de bits AND)
+- | (operador de bits OR)
+- ^ (operador de bits XOR)
+- ~ (operador de bits NOT)
+- << (desvio à esquerda)
+- >> (desvio à direita)
+
+
+
+Operadores compostos
+- ++ (incrementar)
+- -- (decrementar)
+- += (adição composta)
+- -= (subtração composta)
+- *= (multiplicação composta)
+- /= (divisão composta)
+- %= (Módulo composto)
+- &= (Bit a bit e composto)
+- |= (Bit a bit ou composto)
+
+
+
+
+VARIÁVEIS
+Variáveis são expressões que você pode usar em programas para armazenar valores como a leitura de um sensor em um pino analógico.
+Constantes são valores particulares com significados específicos.
+
+
+
+
+Tipos de dados – Variáveis podem ser de vários tipos:
+- HIGH | LOW
+- INPUT | OUTPUT
+- LED_BUILTIN
+- true | false
+
+
+
+
+Tipos de dados:
+- boolean
+- char
+- Byte
+- Int
+- unsigned int
+- long
+- unsigned long
+- short
+- float
+- double
+- string
+- array
+- void
+
+
+
+Conversão
+- char()
+- byte()
+- int()
+- long()
+- float()
+
+
+
+Variáveis de Escopo e Qualificadores
+- Variáveis de Escopo
+- static
+- volatile
+- const
+
+
+
+
+Utilidades 
+- sizeof()
+- PROGMEM
+
+
+
+FUNÇÕES:
+Entrada e saída digital
+  o pinMode (pin, mode)
+  o digitalWrite (pin, value)
+  o digitalRead (pin)
+  
+Entrada e saída analógica
+  o analogReference (type)
+  o analogRead (pin)
+  o analogWrite (pin, value) – PWM
+  
+Entrada e saída avançada
+  o tone ()
+  o noTone ()
+  o shiftOut (dataPin, clockPin, bitOrder, value)
+  o shiftIn ()
+  o pulseIn (pin, value)
+  
+  
+  
+ 
+Tempo
+- unsigned long millis()
+- unsigned long micros()
+- delay(ms)
+- delayMicroseconds(μs)
+
+
+
+
+Matemática
+- min (x, y)
+- max (x, y)
+- abs (x)
+- constrain (x, a, b)
+- map (value, fromLow, fromHigh, toLow, toHigh)
+- pow (base, exponent)
+- sq (x)
+- sqrt (x)
+
+
+
+
+Trigonometria
+- sin (rad)
+- cos (rad)
+- tan (rad)
+
+
+
+
+Números aleatórios
+- randomSeed (seed)
+- long random (max)
+- long random (min, max)
+Comunicação serial 
+  Usado para comunicação entre a placa Arduino e um computador ou outros dispositivos. Esta comunicação ocorre através dos conectores serial ou 
+  USB da placa Arduino e nos pinos digitais 0 (RX) e 1 (TX). Assim, se você utilizar estas funções não poderá utilizar os pinos 0 e 1 para entrada e saída digital.
+  
+- Serial.begin (speed)
+- int Serial.available ()
+- int Serial.read ()
+- Serial.flush ()
+- Serial.print (data)
+- Serial.println (data)
+
+
+
+
+Referência
+- Tabela ASCII
